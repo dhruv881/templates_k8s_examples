@@ -1,0 +1,13 @@
+- hosts: Dev
+  vars:
+   var1: '/rfabdemo-ms/testserv1852'
+   var2: 'testserv1852'
+  tasks:
+  - lineinfile: 
+         dest: /home/ubuntu/append/demo.txt
+         #regexp: "\n"
+         line: "- path: /rfabdemo-ms/testserv1856" 
+         line: "backend:"
+         insertafter: EOF
+         
+         #\n backend:  \n\tserviceName: testserv1850  \n\tservicePort: 8080'

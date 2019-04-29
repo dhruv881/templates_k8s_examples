@@ -1,0 +1,14 @@
+---
+- hosts: prod_kubernetes
+  become: true
+  become_user: root
+  vars:
+    service_name: "{{ serv_name }}"
+    image_name: "{{ img_name }}"
+  tasks:
+    - name: Ansible Template for K8s
+      template:
+        src: /home/ubuntu/anthony/kube_template/kubernetes_depl_main.j2
+        dest: /home/ubuntu/{{ service_name }}.yml
+    - name: creating deployment
+      command: kubectl apply -f /home/ubuntu/{{ service_name }}.yml --validate=false

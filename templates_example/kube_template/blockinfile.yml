@@ -1,0 +1,8 @@
+- hosts: Dev
+  tasks:
+    - name: Ansible Insert multiple lines using blockinfile
+      blockinfile:
+        dest: /home/ubuntu/append/demo.txt 
+        block: |
+          These lines are added by blockinfile module
+          Check out the marker lines

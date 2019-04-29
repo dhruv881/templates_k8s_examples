@@ -1,0 +1,44 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: rfabtest
+  name: rfabtest
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 20
+  selector:
+    matchLabels:
+      app: rfabtest
+  template:
+    metadata:
+      labels:
+        app: rfabtest
+    spec:
+      containers:
+      - name: rfabtest
+        image: 10.26.35.245:8082/rfabtest
+        #imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      imagePullSecrets:
+      - name: regsecret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: rfabtest
+  name: rfabtest
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 32002
+  selector:
+    app: rfabtest
+

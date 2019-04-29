@@ -1,0 +1,10 @@
+---
+- hosts: [Dev]
+  vars:
+   var1: /rfabdemo-ms/testserv002
+   var2: testserv002
+  tasks:
+    - name: Insert a line at the end of a file.
+      lineinfile:
+        path: /home/ubuntu/append/demo.txt
+        line: "        - path: {{ var1 }}\n          backend:\n           serviceName: {{ var2 }}\n           servicePort: 8080"

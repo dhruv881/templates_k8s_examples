@@ -1,0 +1,14 @@
+- hosts: Dev 
+  vars:
+   var1: '/rfabdemo-ms/testserv1853'
+   var2: 'testserv1853'
+  tasks:
+    - name: Ansible lineinfile variable example
+      lineinfile:
+        dest: /home/ubuntu/append/demo.txt
+        line: "{{ item }}"
+      with_items: 
+        - '- path: {{ var1 }}'
+        - '  backend:'
+        - '    serviceName: {{ var2 }}'
+        - '    servicePort: 8080'

@@ -1,0 +1,7 @@
+---
+- hosts: demo
+  gather_facts: yes
+  tasks:
+    - name: delete deployment
+      command: asdfghjk 
+      ignore_errors: yes
